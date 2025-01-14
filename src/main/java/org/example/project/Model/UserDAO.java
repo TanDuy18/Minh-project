@@ -39,7 +39,7 @@ public class UserDAO {
     }
     public boolean insertUser(User user) {
         try{
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO user(username , xeThue , ngThue,ngTra) VALUES (?,?,?,?)") ;
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO user(username , xeThue , ngayThue,ngayTra) VALUES (?,?,?,?)") ;
             ps.setString(1, user.getName());
             ps.setString(2, user.getXeThue());
             ps.setString(3, user.getNgayThue());

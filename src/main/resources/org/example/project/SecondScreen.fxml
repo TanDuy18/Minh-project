@@ -11,9 +11,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="634.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.project.Controller.MainController">
+<AnchorPane prefHeight="579.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.project.Controller.MainController">
    <children>
-      <TableView fx:id="tableView" layoutX="32.0" layoutY="185.0" prefHeight="409.0" prefWidth="646.0" style="-fx-alignment: center;">
+      <TableView fx:id="tableView" layoutX="32.0" layoutY="141.0" prefHeight="409.0" prefWidth="646.0" style="-fx-alignment: center;">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="108.0" text="Họ tên" />
           <TableColumn fx:id="carColumn" prefWidth="116.0" text="Xe thuê" />
@@ -22,7 +22,7 @@
             <TableColumn fx:id="trThaiColumn" prefWidth="97.0" text="Trạng thái" />
         </columns>
       </TableView>
-      <Button fx:id="addAction" layoutX="38.0" layoutY="119.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="56.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">
+      <Button fx:id="addAction" layoutX="38.0" layoutY="89.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="56.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -34,8 +34,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Line endX="575.0" layoutX="140.0" layoutY="95.0" startX="-140.0" />
-      <Label layoutX="31.0" layoutY="23.0" prefHeight="53.0" prefWidth="195.0" text="Car manage">
+      <Line endX="575.0" layoutX="140.0" layoutY="80.0" startX="-140.0" />
+      <Label layoutX="31.0" layoutY="15.0" prefHeight="53.0" prefWidth="195.0" text="Car manage">
          <font>
             <Font name="Cambria Bold" size="32.0" />
          </font>
@@ -52,7 +52,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="carAction" layoutX="154.0" layoutY="119.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="56.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">
+      <Button fx:id="carAction" layoutX="154.0" layoutY="89.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="56.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -64,7 +64,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="searchAction" layoutX="96.0" layoutY="119.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="56.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">
+      <Button fx:id="searchAction" layoutX="96.0" layoutY="89.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="56.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -76,7 +76,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="refreshAction" layoutX="211.0" layoutY="119.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="56.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">
+      <Button fx:id="refreshAction" layoutX="211.0" layoutY="89.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="56.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>

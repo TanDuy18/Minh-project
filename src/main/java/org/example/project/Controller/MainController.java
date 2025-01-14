@@ -74,6 +74,7 @@ public class MainController {
         addActionColumns() ;
         loadData() ;
         addAction.setOnAction(event -> {addValue();}) ;
+        refreshAction.setOnAction(event -> {refreshTable() ;}) ;
     }
 
     private void loadData() {
@@ -140,9 +141,15 @@ public class MainController {
             stage.setScene(scene);
 
             stage.show();
+
         }catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+    private void refreshTable() {
+        userList.clear();
+        userList.addAll(userDAO.getAllUser());
+        tableView.refresh();
     }
 }
