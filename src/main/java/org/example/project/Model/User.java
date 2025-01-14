@@ -1,14 +1,12 @@
 package org.example.project.Model;
 
 public class User {
-    private int id ;
-    private String name ;
-    private String password ;
-
-
-    public User() {
-    }
-
+    private int id;
+    private String name;
+    private String xeThue ;
+    private String ngayTra;
+    private String ngayThue ;
+    private String valid ;
 
     public int getId() {
         return id;
@@ -26,11 +24,35 @@ public class User {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getXeThue() {
+        return xeThue;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setXeThue(String xeThue) {
+        this.xeThue = xeThue;
+    }
+
+    public String getNgayTra() {
+        return ngayTra;
+    }
+
+    public void setNgayTra(String ngayTra) {
+        this.ngayTra = ngayTra;
+    }
+
+    public String getNgayThue() {
+        return ngayThue;
+    }
+
+    public void setNgayThue(String ngayThue) {
+        this.ngayThue = ngayThue;
+    }
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
     }
 }

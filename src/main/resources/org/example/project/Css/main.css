@@ -1,0 +1,6 @@
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #010; /* Màu đường line */
+    -fx-font-size: 14px;
+}

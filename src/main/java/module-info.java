@@ -9,4 +9,6 @@ module org.example.project {
     exports org.example.project;
     exports org.example.project.Controller;
     opens org.example.project.Controller to javafx.fxml;
+    opens org.example.project.Model to javafx.fxml;
+    exports org.example.project.Model ;
 }

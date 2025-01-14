@@ -2,14 +2,21 @@ package org.example.project.Controller;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.example.project.Database.Database;
-import org.example.project.Model.User;
-import org.example.project.Model.UserDAO;
+import org.example.project.HelloApplication;
+import org.example.project.Model.Admin ;
+import org.example.project.Model.AdminDAO;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -28,8 +35,14 @@ public class FirstScreenController {
     @FXML private PasswordField confirmPass;
     @FXML private TextField confirmPassValue;
     @FXML private Button SignUp;
+    @FXML private Button SignIn;
+    @FXML private TextField userName;
+    @FXML private TextField passWord1;
+    @FXML private PasswordField passWord;
+    @FXML private CheckBox Checkbox_show;
 
-    private UserDAO userDAO;
+
+    private AdminDAO userDAO;
     private static Connection con ;
     static {
         try {
@@ -40,9 +53,14 @@ public class FirstScreenController {
     }
     @FXML
     private void initialize() {
-        userDAO = new UserDAO(con);
+        userDAO = new AdminDAO(con);
         registerPage.setVisible(false);
         loginPage.setVisible(true);
+        signUpPassValue.setVisible(false);
+        confirmPassValue.setVisible(false);
+        closePass1.setVisible(false);
+        closePass.setVisible(false);
+        passWord1.setVisible(false);
         signUpButtom.setOnAction(event -> {
             registerPage.setVisible(true);
             loginPage.setVisible(false);
@@ -97,7 +115,7 @@ public class FirstScreenController {
             String username = registerUsername.getText();
 
             if (confirm_pass.equals(pass)) {
-                User user = new User();
+                Admin user = new Admin();
                 user.setName(username);
                 user.setPassword(pass);
 
@@ -113,5 +131,59 @@ public class FirstScreenController {
 
             }
         });
+        Checkbox_show.setOnAction(event -> {
+            if(Checkbox_show.isSelected()) {
+                passWord.setVisible(false);
+                passWord1.setVisible(true);
+
+                String pass = passWord.getText() ;
+                passWord1.setText(pass);
+            } else {
+                passWord.setVisible(true);
+                passWord1.setVisible(false);
+
+                String pass = passWord1.getText() ;
+                passWord.setText(pass);
+            }
+        });
+        SignIn.setOnAction(event -> {
+            Admin user = new Admin();
+                if(!passWord.isVisible()) {
+                    user.setName(userName.getText());
+                    user.setPassword(passWord1.getText());
+                }else {
+                    user.setName(userName.getText());
+                    user.setPassword(passWord.getText());
+                }
+            System.out.println(user.getName() + " " + user.getPassword());
+
+            Boolean check ;
+            try {
+                check = userDAO.selectUser(user) ;
+                System.out.println(check);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            if (check) {
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("/org/example/project/SecondScreen.fxml")); // Thay thế bằng đường dẫn thực tế
+                System.out.println(HelloApplication.class.getResource("/org/example/project/SecondScreen.fxml"));
+
+                Parent newRoot = null;
+                try {
+                    newRoot = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                // Nếu cần truyền dữ liệu, sử dụng controller của màn hình mới
+                MainController controller = loader.getController();
+                controller.setAdmin(user); // Nếu cần truyền thông tin User
+
+                // Lấy Stage hiện tại và đặt giao diện mới
+                Stage currentStage = (Stage) SignIn.getScene().getWindow();
+                currentStage.setScene(new Scene(newRoot));
+            }
+
+        }) ;
     }
 }
