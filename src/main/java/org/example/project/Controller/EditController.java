@@ -7,20 +7,30 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.project.Database.Database;
-import org.example.project.Model.AdminDAO;
 import org.example.project.Model.User;
 import org.example.project.Model.UserDAO;
 
 import java.sql.Connection;
 import java.time.LocalDate;
 
-public class AddController {
-    @FXML private Button cancelButton;
-    @FXML private TextField name_Input;
-    @FXML private DatePicker pay_input;
-    @FXML private TextField car_Input;
-    @FXML private DatePicker rent_input;
-    @FXML private Button saveButton;
+public class EditController {
+    private MainController mainController;
+    public void setMainController(MainController mainController) {this.mainController = mainController;}
+    private int id ;
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
+
+    private User user;
+    public User getUser() {return user;}
+    public void setUser(User user) {this.user = user;
+
+        if (user != null) {
+            name_input.setText(user.getName());
+            car_input.setText(user.getXeThue());
+            pay_input.setValue(LocalDate.parse(user.getNgayTra()));
+            rent_input.setValue(LocalDate.parse(user.getNgayThue()));
+        }
+    }
 
     private UserDAO userDAO;
     private static Connection con ;
@@ -31,21 +41,24 @@ public class AddController {
             e.printStackTrace();
         }
     }
-    private MainController mainController;
 
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
+    @FXML private Button cancelButton;
+    @FXML private TextField car_input;
+    @FXML private TextField name_input;
+    @FXML private DatePicker pay_input;
+    @FXML private DatePicker rent_input;
+    @FXML private Button saveButton;
+
     @FXML
     public void initialize() {
         userDAO = new UserDAO(con);
-        saveButton.setOnAction(event -> addRenter());
+        System.out.println(getUser());
+        saveButton.setOnAction(event -> {saveValue();});
     }
 
-    private void addRenter() {
-        String name = name_Input.getText();
-
-        String car = car_Input.getText();
+    public void saveValue() {
+        String name = name_input.getText();
+        String car = car_input.getText();
 
         LocalDate pay_date = pay_input.getValue();
         LocalDate rent_date = rent_input.getValue();
@@ -73,17 +86,19 @@ public class AddController {
                 user.setXeThue(car);
                 user.setNgayThue(rent_date.toString());
                 user.setNgayTra(pay_date.toString());
-                Boolean check = userDAO.insertUser(user) ;
+                user.setId(getId());
+
+                boolean check = userDAO.updateUser(user,getId());
 
                 if(check) {
                     mainController.refreshTable();
                     Stage currentStage = (Stage) saveButton.getScene().getWindow();
                     currentStage.close();
-
                 } else {
 
                 }
             }
         }
     }
+
 }

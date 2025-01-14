@@ -8,6 +8,11 @@ public class User {
     private String ngayThue ;
     private String valid ;
 
+    public User(int id, String name, String xeThue, String ngayThue, String ngayTra, String valid) {
+
+    }
+    public User() {}
+
     public int getId() {
         return id;
     }

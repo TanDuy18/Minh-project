@@ -15,11 +15,12 @@
    <children>
       <TableView fx:id="tableView" layoutX="32.0" layoutY="141.0" prefHeight="409.0" prefWidth="646.0" style="-fx-alignment: center;">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="108.0" text="Họ tên" />
-          <TableColumn fx:id="carColumn" prefWidth="116.0" text="Xe thuê" />
-            <TableColumn fx:id="ngThueColumn" prefWidth="105.0" text="Ngày thuê" />
-            <TableColumn fx:id="ngTraColumn" prefWidth="98.0" text="Ngày trả" />
-            <TableColumn fx:id="trThaiColumn" prefWidth="97.0" text="Trạng thái" />
+            <TableColumn fx:id="idColumn" prefWidth="43.333343505859375" text="ID" />
+          <TableColumn fx:id="nameColumn" prefWidth="130.0" text="Họ tên" />
+          <TableColumn fx:id="carColumn" prefWidth="79.99996948242188" text="Xe thuê" />
+            <TableColumn fx:id="ngThueColumn" prefWidth="96.66668701171875" text="Ngày thuê" />
+            <TableColumn fx:id="ngTraColumn" prefWidth="88.6666259765625" text="Ngày trả" />
+            <TableColumn fx:id="trThaiColumn" prefWidth="82.0" text="Trạng thái" />
         </columns>
       </TableView>
       <Button fx:id="addAction" layoutX="38.0" layoutY="89.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="56.0" style="-fx-background-radius: 20; -fx-background-color: transparent;">

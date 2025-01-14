@@ -54,4 +54,69 @@ public class UserDAO {
         }
         return false ;
     }
+
+    public boolean updateUser(User user , int id) {
+        try{
+            PreparedStatement ps = conn.prepareStatement("UPDATE user SET username = ?,xeThue = ? ,ngayThue = ? , ngayTra = ? WHERE id = ?") ;
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getXeThue());
+            ps.setString(3, user.getNgayThue());
+            ps.setString(4, user.getNgayTra());
+            ps.setInt(5, id);
+
+            int rowsUpdated = ps.executeUpdate();
+
+            // Kiểm tra xem có hàng nào được cập nhật không
+            return rowsUpdated > 0;
+        }catch (Exception e) {{
+        e.printStackTrace();
+        }
+        }
+        return false ;
+    }
+
+    public void deleteUser(User user) {
+        try{
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM user WHERE id = ?") ;
+            ps.setInt(1, user.getId());
+
+            int rowsAffected = ps.executeUpdate();
+
+            if(rowsAffected > 0) {
+                System.out.println("Delete User Success");
+            } else {
+                System.out.println("Delete User Failed");
+            }
+        }catch (Exception e) {
+
+        }
+    }
+
+    public List<User> searchUsers(String searchText) {
+        List<User> result = new ArrayList<>();
+        String query = "SELECT * FROM user WHERE xeThue LIKE ?";
+
+
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, "%" + searchText + "%"); // Thêm wildcard cho LIKE
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("xeThue"),
+                        rs.getString("ngayThue"),
+                        rs.getString("ngayTra"),
+                        rs.getString("valid")
+                );
+                result.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
 }
